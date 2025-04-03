@@ -69,6 +69,32 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "TaskManagementSystem.Controllers.RolesController",
+    "Method": "GetAllRoles",
+    "RelativePath": "api/Roles",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TaskManagementSystem.Controllers.RolesController",
+    "Method": "AddRole",
+    "RelativePath": "api/Roles",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "saveRequest",
+        "Type": "TaskManagementSystem.Models.DTOs.Requests.AddRoleRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "TaskManagementSystem.Controllers.TasksController",
     "Method": "GetAllTasks",
     "RelativePath": "api/Tasks",
@@ -142,6 +168,38 @@
       {
         "Name": "id",
         "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TaskManagementSystem.Controllers.UsersController",
+    "Method": "AddUser",
+    "RelativePath": "api/Users",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "saveRequest",
+        "Type": "TaskManagementSystem.Models.DTOs.Requests.AddUserRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TaskManagementSystem.Controllers.UsersController",
+    "Method": "AuthenticateUser",
+    "RelativePath": "api/Users/AuthenticateUser",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userAuthenticateRequest",
+        "Type": "TaskManagementSystem.Models.DTOs.Requests.UserAuthenticateRequest",
         "IsRequired": true
       }
     ],

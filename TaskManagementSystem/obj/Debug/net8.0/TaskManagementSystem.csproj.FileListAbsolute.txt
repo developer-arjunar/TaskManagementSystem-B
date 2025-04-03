@@ -170,3 +170,10 @@ E:\Tutorials\Udemy\YT Sameer Saini\TaskManagementSystem\TaskManagementSystem\obj
 E:\Tutorials\Udemy\YT Sameer Saini\TaskManagementSystem\TaskManagementSystem\obj\Debug\net8.0\TaskManagementSystem.pdb
 E:\Tutorials\Udemy\YT Sameer Saini\TaskManagementSystem\TaskManagementSystem\obj\Debug\net8.0\TaskManagementSystem.genruntimeconfig.cache
 E:\Tutorials\Udemy\YT Sameer Saini\TaskManagementSystem\TaskManagementSystem\obj\Debug\net8.0\ref\TaskManagementSystem.dll
+E:\Tutorials\Udemy\YT Sameer Saini\TaskManagementSystem\TaskManagementSystem\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+E:\Tutorials\Udemy\YT Sameer Saini\TaskManagementSystem\TaskManagementSystem\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+E:\Tutorials\Udemy\YT Sameer Saini\TaskManagementSystem\TaskManagementSystem\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+E:\Tutorials\Udemy\YT Sameer Saini\TaskManagementSystem\TaskManagementSystem\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
+E:\Tutorials\Udemy\YT Sameer Saini\TaskManagementSystem\TaskManagementSystem\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
+E:\Tutorials\Udemy\YT Sameer Saini\TaskManagementSystem\TaskManagementSystem\obj\Debug\net8.0\TaskManagementSystem.sourcelink.json
+E:\Tutorials\Udemy\YT Sameer Saini\TaskManagementSystem\TaskManagementSystem\bin\Debug\net8.0\BCrypt.Net-Next.dll
