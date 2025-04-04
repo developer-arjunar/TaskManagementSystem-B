@@ -11,5 +11,7 @@
         public DateTime UpdatedDate { get; set; }
 
         public required string Status { get; set; }
+
+        public required Guid AssigneeId { get; set; }
     }
 }

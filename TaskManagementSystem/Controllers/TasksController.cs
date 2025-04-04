@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 using TaskManagementSystem.Data;
 using TaskManagementSystem.Enums;
 using TaskManagementSystem.Models.DTOs.Requests;
+using TaskManagementSystem.Models.DTOs.Responses;
 using TaskManagementSystem.Models.Entities;
 
 namespace TaskManagementSystem.Controllers
@@ -22,23 +24,102 @@ namespace TaskManagementSystem.Controllers
         [HttpGet]
         public IActionResult GetAllTasks()
         {
-            var allTasks = dbContext.Tasks.ToList();
+            var tasks = dbContext.Tasks.Include(t => t.Comments).Include(t => t.Assignee).ToList();
 
-            return Ok(allTasks);
+            if (tasks is null)
+            {
+                return NotFound();
+            }
+
+            var getAllResponse = tasks.Select(task => new GetTaskResponse()
+            {
+                Id = task.Id,
+                Name = task.Name,
+                Description = task.Description,
+                CreatedBy = task.CreatedBy,
+                CreatedDate = task.CreatedDate,
+                DueDate = task.DueDate,
+                UpdatedBy = task.UpdatedBy,
+                UpdatedDate = task.UpdatedDate,
+                Status = task.Status,
+                Comments = task.Comments,
+                Assignee = new UserSimpleResponse()
+                {
+                    Id = task.Assignee.Id,
+                    Name = task.Assignee.Name,
+                    Email = task.Assignee.Email
+                }
+            }).ToList();
+
+            return Ok(getAllResponse);
         }
 
         [HttpGet]
         [Route("{id:guid}")]
         public IActionResult GetTaskById(Guid id)
         {
-            var task = dbContext.Tasks.Find(id);
+            var task = dbContext.Tasks.Include(t => t.Comments).Include(t => t.Assignee).FirstOrDefault(t => t.Id == id);
 
             if (task is null)
             {
                 return NotFound();
             }
 
-            return Ok(task);
+            var getResponse = new GetTaskResponse()
+            {
+                Id = task.Id,
+                Name = task.Name,
+                Description = task.Description,
+                CreatedBy = task.CreatedBy,
+                CreatedDate = task.CreatedDate,
+                DueDate = task.DueDate,
+                UpdatedBy = task.UpdatedBy,
+                UpdatedDate = task.UpdatedDate,
+                Status = task.Status,
+                Comments = task.Comments,
+                Assignee = new UserSimpleResponse()
+                {
+                    Id = task.Assignee.Id,
+                    Name = task.Assignee.Name,
+                    Email = task.Assignee.Email
+                }
+            };
+
+            return Ok(getResponse);
+        }
+
+        [HttpGet]
+        [Route("byAssigneeId/{assigneeId:guid}")]
+        public IActionResult GetAllTasksByAssigneeId(Guid assigneeId)
+        {
+            var allTasksByAssigneeId = dbContext.Tasks.Include(t => t.Comments).Include(t => t.Assignee).Where(t => t.AssigneeId == assigneeId).ToList();
+
+            if (allTasksByAssigneeId is null)
+            {
+                return NotFound();
+            }
+
+            var getAllByAssigneeIdResponse = allTasksByAssigneeId.Select(task => new GetTaskResponse()
+            {
+                Id = task.Id,
+                Name = task.Name,
+                Description = task.Description,
+                CreatedBy = task.CreatedBy,
+                CreatedDate = task.CreatedDate,
+                DueDate = task.DueDate,
+                UpdatedBy = task.UpdatedBy,
+                UpdatedDate = task.UpdatedDate,
+                Status = task.Status,
+                Comments = task.Comments,
+                Assignee = new UserSimpleResponse()
+                {
+                    Id = task.Assignee.Id,
+                    Name = task.Assignee.Name,
+                    Email = task.Assignee.Email
+                }
+            }).ToList();
+
+            return Ok(getAllByAssigneeIdResponse);
         }
 
         [HttpPost]
@@ -48,8 +129,11 @@ namespace TaskManagementSystem.Controllers
             {
                 Name = saveRequest.Name,
                 Description = saveRequest.Description,
+                AssigneeId = saveRequest.AssigneeId,
+                CreatedBy = "ADMIN",
                 CreatedDate = DateTime.Now,
                 DueDate = saveRequest.DueDate,
+                UpdatedBy = "ADMIN",
                 UpdatedDate = DateTime.Now,
                 Status = "OPENED"
             };
@@ -57,7 +141,33 @@ namespace TaskManagementSystem.Controllers
             dbContext.Tasks.Add(task);
             dbContext.SaveChanges();
 
-            return Ok(task);
+            var savedTask = dbContext.Tasks.Include(t => t.Assignee).FirstOrDefault(t => t.Id == task.Id);
+
+            if (savedTask is null)
+            {
+                return BadRequest();
+            }
+
+            var saveResponse = new AddTaskResponse()
+            {
+                Id = savedTask.Id,
+                Name = savedTask.Name,
+                Description = savedTask.Description,
+                CreatedBy = savedTask.CreatedBy,
+                CreatedDate = savedTask.CreatedDate,
+                DueDate = savedTask.DueDate,
+                UpdatedBy = savedTask.UpdatedBy,
+                UpdatedDate = savedTask.UpdatedDate,
+                Status = savedTask.Status,
+                Assignee = new UserSimpleResponse()
+                {
+                    Id = savedTask.Assignee.Id,
+                    Name = savedTask.Assignee.Name,
+                    Email = savedTask.Assignee.Email
+                }
+            };
+
+            return Ok(saveResponse);
         }
 
         [HttpPut]
@@ -76,10 +186,37 @@ namespace TaskManagementSystem.Controllers
             task.DueDate = updateRequest.DueDate;
             task.UpdatedDate = DateTime.Now;
             task.Status = updateRequest.Status;
+            task.AssigneeId = updateRequest.AssigneeId;
 
             dbContext.SaveChanges();
 
-            return Ok(task);
+            var updatedTask = dbContext.Tasks.Include(t => t.Assignee).FirstOrDefault(t => t.Id == task.Id);
+
+            if (updatedTask is null)
+            {
+                return BadRequest();
+            }
+
+            var updateResponse = new AddTaskResponse()
+            {
+                Id = updatedTask.Id,
+                Name = updatedTask.Name,
+                Description = updatedTask.Description,
+                CreatedBy = updatedTask.CreatedBy,
+                CreatedDate = updatedTask.CreatedDate,
+                DueDate = updatedTask.DueDate,
+                UpdatedBy = updatedTask.UpdatedBy,
+                UpdatedDate = updatedTask.UpdatedDate,
+                Status = updatedTask.Status,
+                Assignee = new UserSimpleResponse()
+                {
+                    Id = updatedTask.Assignee.Id,
+                    Name = updatedTask.Assignee.Name,
+                    Email = updatedTask.Assignee.Email
+                }
+            };
+
+            return Ok(updateResponse);
         }
 
         [HttpDelete]

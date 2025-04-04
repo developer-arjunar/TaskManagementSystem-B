@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TaskManagementSystem.Data;
 
@@ -11,9 +12,11 @@ using TaskManagementSystem.Data;
 namespace TaskManagementSystem.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250402165427_add users and roles tables")]
+    partial class addusersandrolestables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -69,13 +72,6 @@ namespace TaskManagementSystem.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("AssigneeId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
@@ -94,16 +90,10 @@ namespace TaskManagementSystem.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UpdatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AssigneeId");
 
                     b.ToTable("Tasks");
                 });
@@ -151,17 +141,6 @@ namespace TaskManagementSystem.Migrations
                     b.Navigation("Task");
                 });
 
-            modelBuilder.Entity("TaskManagementSystem.Models.Entities.Task", b =>
-                {
-                    b.HasOne("TaskManagementSystem.Models.Entities.User", "Assignee")
-                        .WithMany("Tasks")
-                        .HasForeignKey("AssigneeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Assignee");
-                });
-
             modelBuilder.Entity("TaskManagementSystem.Models.Entities.User", b =>
                 {
                     b.HasOne("TaskManagementSystem.Models.Entities.Role", "Role")
@@ -181,11 +160,6 @@ namespace TaskManagementSystem.Migrations
             modelBuilder.Entity("TaskManagementSystem.Models.Entities.Task", b =>
                 {
                     b.Navigation("Comments");
-                });
-
-            modelBuilder.Entity("TaskManagementSystem.Models.Entities.User", b =>
-                {
-                    b.Navigation("Tasks");
                 });
 #pragma warning restore 612, 618
         }
