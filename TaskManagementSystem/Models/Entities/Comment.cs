@@ -1,4 +1,6 @@
-﻿namespace TaskManagementSystem.Models.Entities
+﻿using System.Text.Json.Serialization;
+
+namespace TaskManagementSystem.Models.Entities
 {
     public class Comment
     {
@@ -10,6 +12,7 @@
 
         public required Guid TaskId { get; set; }
 
+        [JsonIgnore]
         public Task? Task { get; set; }
     }
 }

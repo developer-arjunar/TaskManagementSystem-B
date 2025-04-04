@@ -1,4 +1,6 @@
-﻿namespace TaskManagementSystem.Models.Entities
+﻿using System.Text.Json.Serialization;
+
+namespace TaskManagementSystem.Models.Entities
 {
     public class User
     {
@@ -15,5 +17,8 @@
         public required Guid RoleId { get; set; }
 
         public Role? Role { get; set; }
+
+        [JsonIgnore]
+        public ICollection<Task>? Tasks { get; set; }
     }
 }

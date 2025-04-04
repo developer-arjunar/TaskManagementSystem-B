@@ -18,6 +18,6 @@ namespace TaskManagementSystem.Models.DTOs.Responses
 
         public required string Status { get; set; }
 
-        public ICollection<Comment> Comments { get; set; }
+        public ICollection<Comment>? Comments { get; set; }
     }
 }

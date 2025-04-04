@@ -24,6 +24,8 @@ namespace TaskManagementSystem.Controllers
         {
             var allTasks = dbContext.Tasks.ToList();
 
+            //var allTasks = dbContext.Tasks.Include(t => t.Comments).ToList();
+
             return Ok(allTasks);
         }
 
@@ -31,7 +33,9 @@ namespace TaskManagementSystem.Controllers
         [Route("{id:guid}")]
         public IActionResult GetTaskById(Guid id)
         {
-            var task = dbContext.Tasks.Find(id);
+            //var task = dbContext.Tasks.Find(id);
+
+            var task = dbContext.Tasks.Include(t => t.Comments).FirstOrDefault(t => t.Id == id);
 
             if (task is null)
             {
@@ -48,8 +52,11 @@ namespace TaskManagementSystem.Controllers
             {
                 Name = saveRequest.Name,
                 Description = saveRequest.Description,
+                AssigneeId = saveRequest.AssigneeId,
+                CreatedBy = "ADMIN",
                 CreatedDate = DateTime.Now,
                 DueDate = saveRequest.DueDate,
+                UpdatedBy = "ADMIN",
                 UpdatedDate = DateTime.Now,
                 Status = "OPENED"
             };

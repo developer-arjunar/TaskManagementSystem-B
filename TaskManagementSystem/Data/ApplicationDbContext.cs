@@ -27,6 +27,12 @@ namespace TaskManagementSystem.Data
                 .WithOne(c => c.Task)
                 .HasForeignKey(c => c.TaskId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Models.Entities.Task>()
+                .HasOne(t => t.Assignee)
+                .WithMany(u => u.Tasks)
+                .HasForeignKey(t => t.AssigneeId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
