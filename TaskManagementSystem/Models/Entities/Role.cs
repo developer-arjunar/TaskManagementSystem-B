@@ -1,4 +1,6 @@
-﻿namespace TaskManagementSystem.Models.Entities
+﻿using System.Text.Json.Serialization;
+
+namespace TaskManagementSystem.Models.Entities
 {
     public class Role
     {
@@ -8,6 +10,7 @@
 
         public string? Description { get; set; }
 
+        [JsonIgnore]
         public ICollection<User>? Users { get; set; }
     }
 }

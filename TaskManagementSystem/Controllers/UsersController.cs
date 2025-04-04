@@ -5,6 +5,7 @@ using TaskManagementSystem.Models.DTOs.Requests;
 using TaskManagementSystem.Models.Entities;
 using BCrypt.Net;
 using Microsoft.EntityFrameworkCore;
+using TaskManagementSystem.Models.DTOs.Responses;
 
 namespace TaskManagementSystem.Controllers
 {
@@ -34,27 +35,24 @@ namespace TaskManagementSystem.Controllers
             dbContext.Users.Add(user);
             dbContext.SaveChanges();
 
-            return Ok(user);
+            var savedUser = dbContext.Users.Include(u => u.Role).FirstOrDefault(u => u.Id == user.Id);
+
+            if (savedUser == null)
+            {
+                return BadRequest();
+            }
+
+            var saveResponse = new UserResponse
+            {
+                Id = savedUser.Id,
+                Name = savedUser.Name,
+                Email = savedUser.Email,
+                Username = savedUser.Username.ToUpper(),
+                Role = savedUser.Role
+            };
+
+            return Ok(saveResponse);
         }
-
-        //[HttpPost]
-        //[Route("{username}/{password}")]
-        //public bool AuthenticateUser(string username, string password) 
-        //{
-        //    string storedHash = "";
-
-        //    var filterUser = dbContext.Users.FirstOrDefault(u => u.Username == username);
-
-        //    //string storedHash = BCrypt.Net.Get
-        //    //bool isPasswordValid = false;
-
-        //    if (filterUser != null)
-        //    {
-        //        storedHash = filterUser.Password;
-        //    }
-
-        //    return BCrypt.Net.BCrypt.Verify(password, storedHash);
-        //}
 
         [HttpPost]
         [Route("AuthenticateUser")]
@@ -62,23 +60,30 @@ namespace TaskManagementSystem.Controllers
         {
             string storedHash = "";
 
-            var filterUser = dbContext.Users.FirstOrDefault(u => u.Username == userAuthenticateRequest.Username);
+            var filterUser = dbContext.Users.Include(u => u.Role).FirstOrDefault(u => u.Username == userAuthenticateRequest.Username);
 
             if (filterUser is not null)
             {
                 storedHash = filterUser.Password;
 
-                //Console.WriteLine("Password Hash : ");
-                //Console.ReadLine();
-                
-                //if (BCrypt.Net.BCrypt.Verify(userAuthenticateRequest.Password, storedHash) == true)
-                //{
-                    return Ok(filterUser);
-                //}
+                if (BCrypt.Net.BCrypt.Verify(userAuthenticateRequest.Password, storedHash))
+                {
+                    var authResponse = new UserResponse
+                    {
+                        Id = filterUser.Id,
+                        Name = filterUser.Name,
+                        Email = filterUser.Email,
+                        Username = filterUser.Username.ToUpper(),
+                        Role = filterUser.Role
+                    };
+
+                    return Ok(authResponse);
+                } else
+                {
+                    return BadRequest();
+                }
             } else
             {
-                //Console.WriteLine("NOT FOUND");
-                //Console.ReadLine();
                 return NotFound();
             }
         }
