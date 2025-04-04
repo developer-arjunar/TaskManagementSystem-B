@@ -20,6 +20,21 @@ namespace TaskManagementSystem.Controllers
             this.dbContext = dbContext;
         }
 
+        [HttpGet]
+        public IActionResult GetAllUsers()
+        {
+            var users = dbContext.Users.ToList();
+
+            var getAllResponse = users.Select(user => new UserSimpleResponse()
+            {
+                Id = user.Id,
+                Name = user.Name,
+                Email = user.Email
+            }).ToList();
+
+            return Ok(getAllResponse);
+        }
+
         [HttpPost]
         public IActionResult AddUser(AddUserRequest saveRequest)
         {
@@ -37,7 +52,7 @@ namespace TaskManagementSystem.Controllers
 
             var savedUser = dbContext.Users.Include(u => u.Role).FirstOrDefault(u => u.Id == user.Id);
 
-            if (savedUser == null)
+            if (savedUser is null)
             {
                 return BadRequest();
             }

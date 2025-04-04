@@ -1,9 +1,8 @@
-﻿using TaskManagementSystem.Migrations;
-using TaskManagementSystem.Models.Entities;
+﻿using TaskManagementSystem.Models.Entities;
 
 namespace TaskManagementSystem.Models.DTOs.Responses
 {
-    public class TaskResponse
+    public class AddTaskResponse
     {
         public Guid Id { get; set; }
 
@@ -23,8 +22,6 @@ namespace TaskManagementSystem.Models.DTOs.Responses
 
         public required string Status { get; set; }
 
-        public ICollection<Comment>? Comments { get; set; }
-
-        public UserResponse Assignee { get; set; }
+        public UserSimpleResponse Assignee { get; set; }
     }
 }

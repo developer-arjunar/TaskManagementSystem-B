@@ -24,6 +24,6 @@
 
         public required Guid AssigneeId { get; set; }
 
-        public User? Assignee { get; set; }
+        public User Assignee { get; set; }
     }
 }
