@@ -10,6 +10,8 @@ namespace TaskManagementSystem.Models.DTOs.Requests
 
         public DateTime DueDate { get; set; }
 
+        public required string Status { get; set; }
+
         public required Guid AssigneeId { get; set; }
     }
 }

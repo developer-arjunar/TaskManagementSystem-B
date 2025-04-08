@@ -135,7 +135,7 @@ namespace TaskManagementSystem.Controllers
                 DueDate = saveRequest.DueDate,
                 UpdatedBy = "ADMIN",
                 UpdatedDate = DateTime.Now,
-                Status = "OPENED"
+                Status = saveRequest.Status
             };
 
             dbContext.Tasks.Add(task);
