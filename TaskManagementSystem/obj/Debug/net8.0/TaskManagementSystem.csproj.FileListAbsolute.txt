@@ -356,3 +356,5 @@ F:\Personal\Projects\.NET\TaskManagementSystem-B\TaskManagementSystem\obj\Debug\
 F:\Personal\Projects\.NET\TaskManagementSystem-B\TaskManagementSystem\obj\Debug\net8.0\TaskManagementSystem.pdb
 F:\Personal\Projects\.NET\TaskManagementSystem-B\TaskManagementSystem\obj\Debug\net8.0\TaskManagementSystem.genruntimeconfig.cache
 F:\Personal\Projects\.NET\TaskManagementSystem-B\TaskManagementSystem\obj\Debug\net8.0\ref\TaskManagementSystem.dll
+F:\Personal\Projects\.NET\TaskManagementSystem-B\TaskManagementSystem\bin\Debug\net8.0\MySqlConnector.dll
+F:\Personal\Projects\.NET\TaskManagementSystem-B\TaskManagementSystem\bin\Debug\net8.0\Pomelo.EntityFrameworkCore.MySql.dll

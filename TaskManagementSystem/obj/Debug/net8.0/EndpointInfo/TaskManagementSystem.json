@@ -425,7 +425,8 @@
         "required": [
           "assigneeId",
           "description",
-          "name"
+          "name",
+          "status"
         ],
         "type": "object",
         "properties": {
@@ -440,6 +441,10 @@
           "dueDate": {
             "type": "string",
             "format": "date-time"
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
           },
           "assigneeId": {
             "type": "string",
