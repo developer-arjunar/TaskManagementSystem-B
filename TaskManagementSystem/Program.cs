@@ -9,7 +9,7 @@ builder.Services.AddCors(options =>
         builder =>
         {
             builder
-                .WithOrigins("http://localhost:4200", "http://192.168.137.1:4200")
+                .WithOrigins("http://localhost:4200", "http://172.21.112.106:4200")
                 .AllowAnyHeader()
                 .AllowAnyMethod();
         });
@@ -22,7 +22,13 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<ApplicationDbContext>(options => 
+    options.UseMySql(
+        builder.Configuration.GetConnectionString("DefaultConnection"),
+        //ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))
+        new MySqlServerVersion(new Version(8, 0, 26))
+    )
+);
 
 var app = builder.Build();
 

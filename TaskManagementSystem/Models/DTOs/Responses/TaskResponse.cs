@@ -1,5 +1,4 @@
-﻿using TaskManagementSystem.Migrations;
-using TaskManagementSystem.Models.Entities;
+﻿using TaskManagementSystem.Models.Entities;
 
 namespace TaskManagementSystem.Models.DTOs.Responses
 {
