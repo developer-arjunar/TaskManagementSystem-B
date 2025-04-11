@@ -130,10 +130,10 @@ namespace TaskManagementSystem.Controllers
                 Name = saveRequest.Name,
                 Description = saveRequest.Description,
                 AssigneeId = saveRequest.AssigneeId,
-                CreatedBy = "ADMIN",
+                CreatedBy = saveRequest.CreatedBy,
                 CreatedDate = DateTime.Now,
                 DueDate = saveRequest.DueDate,
-                UpdatedBy = "ADMIN",
+                UpdatedBy = saveRequest.UpdatedBy,
                 UpdatedDate = DateTime.Now,
                 Status = saveRequest.Status
             };
@@ -184,6 +184,7 @@ namespace TaskManagementSystem.Controllers
             task.Name = updateRequest.Name;
             task.Description = updateRequest.Description;
             task.DueDate = updateRequest.DueDate;
+            task.UpdatedBy = updateRequest.UpdatedBy;
             task.UpdatedDate = DateTime.Now;
             task.Status = updateRequest.Status;
             task.AssigneeId = updateRequest.AssigneeId;

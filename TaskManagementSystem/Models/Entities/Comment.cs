@@ -8,6 +8,8 @@ namespace TaskManagementSystem.Models.Entities
 
         public required string TaskComment { get; set; }
 
+        public required string CreatedBy { get; set; }
+
         public DateTime CreatedDate { get; set; }
 
         public required Guid TaskId { get; set; }

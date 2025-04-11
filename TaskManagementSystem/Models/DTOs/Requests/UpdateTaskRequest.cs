@@ -8,6 +8,8 @@
 
         public DateTime DueDate { get; set; }
 
+        public required string UpdatedBy { get; set; }
+
         public DateTime UpdatedDate { get; set; }
 
         public required string Status { get; set; }

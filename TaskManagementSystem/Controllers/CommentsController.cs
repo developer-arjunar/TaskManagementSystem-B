@@ -33,6 +33,7 @@ namespace TaskManagementSystem.Controllers
             var comment = new Comment()
             {
                 TaskComment = saveRequest.TaskComment,
+                CreatedBy = saveRequest.CreatedBy,
                 CreatedDate = DateTime.Now,
                 TaskId = saveRequest.TaskId
             };

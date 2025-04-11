@@ -8,6 +8,10 @@ namespace TaskManagementSystem.Models.DTOs.Requests
 
         public required string Description { get; set; }
 
+        public required string CreatedBy { get; set; }
+
+        public required string UpdatedBy { get; set; }
+
         public DateTime DueDate { get; set; }
 
         public required string Status { get; set; }

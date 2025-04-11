@@ -388,12 +388,17 @@
     "schemas": {
       "AddCommentRequest": {
         "required": [
+          "createdBy",
           "taskComment",
           "taskId"
         ],
         "type": "object",
         "properties": {
           "taskComment": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdBy": {
             "type": "string",
             "nullable": true
           },
@@ -424,9 +429,11 @@
       "AddTaskRequest": {
         "required": [
           "assigneeId",
+          "createdBy",
           "description",
           "name",
-          "status"
+          "status",
+          "updatedBy"
         ],
         "type": "object",
         "properties": {
@@ -435,6 +442,14 @@
             "nullable": true
           },
           "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "updatedBy": {
             "type": "string",
             "nullable": true
           },
@@ -504,7 +519,8 @@
           "assigneeId",
           "description",
           "name",
-          "status"
+          "status",
+          "updatedBy"
         ],
         "type": "object",
         "properties": {
@@ -519,6 +535,10 @@
           "dueDate": {
             "type": "string",
             "format": "date-time"
+          },
+          "updatedBy": {
+            "type": "string",
+            "nullable": true
           },
           "updatedDate": {
             "type": "string",
