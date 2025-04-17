@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Personal\\Projects\\.NET\\TaskManagementSystem-B\\TaskManagementSystem\\TaskManagementSystem.csproj": {}
+    "E:\\Tutorials\\Udemy\\YT Sameer Saini\\TaskManagementSystem\\TaskManagementSystem\\TaskManagementSystem.csproj": {}
   },
   "projects": {
-    "F:\\Personal\\Projects\\.NET\\TaskManagementSystem-B\\TaskManagementSystem\\TaskManagementSystem.csproj": {
+    "E:\\Tutorials\\Udemy\\YT Sameer Saini\\TaskManagementSystem\\TaskManagementSystem\\TaskManagementSystem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Personal\\Projects\\.NET\\TaskManagementSystem-B\\TaskManagementSystem\\TaskManagementSystem.csproj",
+        "projectUniqueName": "E:\\Tutorials\\Udemy\\YT Sameer Saini\\TaskManagementSystem\\TaskManagementSystem\\TaskManagementSystem.csproj",
         "projectName": "TaskManagementSystem",
-        "projectPath": "F:\\Personal\\Projects\\.NET\\TaskManagementSystem-B\\TaskManagementSystem\\TaskManagementSystem.csproj",
-        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "F:\\Personal\\Projects\\.NET\\TaskManagementSystem-B\\TaskManagementSystem\\obj\\",
+        "projectPath": "E:\\Tutorials\\Udemy\\YT Sameer Saini\\TaskManagementSystem\\TaskManagementSystem\\TaskManagementSystem.csproj",
+        "packagesPath": "C:\\Users\\Arjuna Randeniya\\.nuget\\packages\\",
+        "outputPath": "E:\\Tutorials\\Udemy\\YT Sameer Saini\\TaskManagementSystem\\TaskManagementSystem\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Arjuna Randeniya\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
