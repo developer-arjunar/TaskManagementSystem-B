@@ -267,7 +267,6 @@ F:\Personal\Projects\.NET\TaskManagementSystem-B\TaskManagementSystem\obj\Debug\
 F:\Personal\Projects\.NET\TaskManagementSystem-B\TaskManagementSystem\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.TaskManagementSystem.props
 F:\Personal\Projects\.NET\TaskManagementSystem-B\TaskManagementSystem\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.TaskManagementSystem.props
 F:\Personal\Projects\.NET\TaskManagementSystem-B\TaskManagementSystem\obj\Debug\net8.0\staticwebassets.pack.json
-F:\Personal\Projects\.NET\TaskManagementSystem-B\TaskManagementSystem\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 F:\Personal\Projects\.NET\TaskManagementSystem-B\TaskManagementSystem\obj\Debug\net8.0\TaskMana.27CB023B.Up2Date
 F:\Personal\Projects\.NET\TaskManagementSystem-B\TaskManagementSystem\obj\Debug\net8.0\TaskManagementSystem.dll
 F:\Personal\Projects\.NET\TaskManagementSystem-B\TaskManagementSystem\obj\Debug\net8.0\refint\TaskManagementSystem.dll
@@ -286,3 +285,4 @@ F:\Personal\Projects\.NET\TaskManagementSystem-B\TaskManagementSystem\bin\Debug\
 E:\Tutorials\Udemy\YT Sameer Saini\TaskManagementSystem\TaskManagementSystem\bin\Debug\net8.0\MySqlConnector.dll
 E:\Tutorials\Udemy\YT Sameer Saini\TaskManagementSystem\TaskManagementSystem\bin\Debug\net8.0\Pomelo.EntityFrameworkCore.MySql.dll
 E:\Tutorials\Udemy\YT Sameer Saini\TaskManagementSystem\TaskManagementSystem\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+F:\Personal\Projects\.NET\TaskManagementSystem-B\TaskManagementSystem\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
