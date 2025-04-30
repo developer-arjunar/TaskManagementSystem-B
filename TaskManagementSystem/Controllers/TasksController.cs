@@ -122,6 +122,74 @@ namespace TaskManagementSystem.Controllers
             return Ok(getAllByAssigneeIdResponse);
         }
 
+        [HttpGet]
+        [Route("byAssigneeIdAndStatus/{assigneeId:guid}/{status}")]
+        public IActionResult GetTasksByStatus(Guid assigneeId, String status)
+        {
+            var allTasksByAssigneeIdAndStatus = dbContext.Tasks.Include(t => t.Comments).Include(t => t.Assignee).Where(t => t.AssigneeId == assigneeId && t.Status == status).ToList();
+
+            if (allTasksByAssigneeIdAndStatus is null)
+            {
+                return NotFound();
+            }
+
+            var getAllByAssigneeIdAndStatusResponse = allTasksByAssigneeIdAndStatus.Select(task => new GetTaskResponse()
+            {
+                Id = task.Id,
+                Name = task.Name,
+                Description = task.Description,
+                CreatedBy = task.CreatedBy,
+                CreatedDate = task.CreatedDate,
+                DueDate = task.DueDate,
+                UpdatedBy = task.UpdatedBy,
+                UpdatedDate = task.UpdatedDate,
+                Status = task.Status,
+                Comments = task.Comments,
+                Assignee = new UserSimpleResponse()
+                {
+                    Id = task.Assignee.Id,
+                    Name = task.Assignee.Name,
+                    Email = task.Assignee.Email
+                }
+            }).ToList();
+
+            return Ok(getAllByAssigneeIdAndStatusResponse);
+        }
+
+        [HttpGet]
+        [Route("byStatus/{status}")]
+        public IActionResult GetTasksByStatus(String status)
+        {
+            var allTasksByStatus = dbContext.Tasks.Include(t => t.Comments).Include(t => t.Assignee).Where(t => t.Status == status).ToList();
+
+            if (allTasksByStatus is null)
+            {
+                return NotFound();
+            }
+
+            var getAllByStatusResponse = allTasksByStatus.Select(task => new GetTaskResponse()
+            {
+                Id = task.Id,
+                Name = task.Name,
+                Description = task.Description,
+                CreatedBy = task.CreatedBy,
+                CreatedDate = task.CreatedDate,
+                DueDate = task.DueDate,
+                UpdatedBy = task.UpdatedBy,
+                UpdatedDate = task.UpdatedDate,
+                Status = task.Status,
+                Comments = task.Comments,
+                Assignee = new UserSimpleResponse()
+                {
+                    Id = task.Assignee.Id,
+                    Name = task.Assignee.Name,
+                    Email = task.Assignee.Email
+                }
+            }).ToList();
+
+            return Ok(getAllByStatusResponse);
+        }
+
         [HttpPost]
         public IActionResult AddTask(AddTaskRequest saveRequest)
         {

@@ -190,6 +190,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "TaskManagementSystem.Controllers.TasksController",
+    "Method": "GetTasksByStatus",
+    "RelativePath": "api/Tasks/byStatus/{status}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "status",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "TaskManagementSystem.Controllers.UsersController",
     "Method": "GetAllUsers",
     "RelativePath": "api/Users",
