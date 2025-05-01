@@ -29,7 +29,9 @@ namespace TaskManagementSystem.Controllers
             {
                 Id = user.Id,
                 Name = user.Name,
-                Email = user.Email
+                Email = user.Email,
+                PhoneNo = user.PhoneNo,
+                Status = user.Status
             }).ToList();
 
             return Ok(getAllResponse);
@@ -42,8 +44,10 @@ namespace TaskManagementSystem.Controllers
             {
                 Name = saveRequest.Name,
                 Email = saveRequest.Email,
+                PhoneNo = saveRequest.PhoneNo,
                 Username = saveRequest.Username.ToUpper(),
                 Password = BCrypt.Net.BCrypt.HashPassword(saveRequest.Password),
+                Status = Enums.UserStatus.ACTIVE,
                 RoleId = saveRequest.RoleId
             };
 
@@ -62,7 +66,9 @@ namespace TaskManagementSystem.Controllers
                 Id = savedUser.Id,
                 Name = savedUser.Name,
                 Email = savedUser.Email,
+                PhoneNo = savedUser.PhoneNo,
                 Username = savedUser.Username.ToUpper(),
+                Status = savedUser.Status,
                 Role = savedUser.Role
             };
 
@@ -88,7 +94,9 @@ namespace TaskManagementSystem.Controllers
                         Id = filterUser.Id,
                         Name = filterUser.Name,
                         Email = filterUser.Email,
+                        PhoneNo = filterUser.PhoneNo,
                         Username = filterUser.Username.ToUpper(),
+                        Status = filterUser.Status,
                         Role = filterUser.Role
                     };
 

@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Serialization;
+using TaskManagementSystem.Enums;
 
 namespace TaskManagementSystem.Models.Entities
 {
@@ -10,9 +11,13 @@ namespace TaskManagementSystem.Models.Entities
 
         public required string Email { get; set; }
 
+        public required string PhoneNo { get; set; }
+
         public required string Username { get; set; }
 
         public required string Password { get; set; }
+
+        public required UserStatus Status { get; set; }
 
         public required Guid RoleId { get; set; }
 

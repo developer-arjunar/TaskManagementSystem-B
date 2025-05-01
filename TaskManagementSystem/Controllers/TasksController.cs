@@ -47,7 +47,9 @@ namespace TaskManagementSystem.Controllers
                 {
                     Id = task.Assignee.Id,
                     Name = task.Assignee.Name,
-                    Email = task.Assignee.Email
+                    Email = task.Assignee.Email,
+                    PhoneNo = task.Assignee.PhoneNo,
+                    Status = task.Assignee.Status
                 }
             }).ToList();
 
@@ -81,7 +83,9 @@ namespace TaskManagementSystem.Controllers
                 {
                     Id = task.Assignee.Id,
                     Name = task.Assignee.Name,
-                    Email = task.Assignee.Email
+                    Email = task.Assignee.Email,
+                    PhoneNo = task.Assignee.PhoneNo,
+                    Status = task.Assignee.Status
                 }
             };
 
@@ -115,7 +119,9 @@ namespace TaskManagementSystem.Controllers
                 {
                     Id = task.Assignee.Id,
                     Name = task.Assignee.Name,
-                    Email = task.Assignee.Email
+                    Email = task.Assignee.Email,
+                    PhoneNo = task.Assignee.PhoneNo,
+                    Status = task.Assignee.Status
                 }
             }).ToList();
 
@@ -149,7 +155,9 @@ namespace TaskManagementSystem.Controllers
                 {
                     Id = task.Assignee.Id,
                     Name = task.Assignee.Name,
-                    Email = task.Assignee.Email
+                    Email = task.Assignee.Email,
+                    PhoneNo = task.Assignee.PhoneNo,
+                    Status = task.Assignee.Status
                 }
             }).ToList();
 
@@ -183,7 +191,9 @@ namespace TaskManagementSystem.Controllers
                 {
                     Id = task.Assignee.Id,
                     Name = task.Assignee.Name,
-                    Email = task.Assignee.Email
+                    Email = task.Assignee.Email,
+                    PhoneNo = task.Assignee.PhoneNo,
+                    Status = task.Assignee.Status
                 }
             }).ToList();
 
@@ -231,7 +241,9 @@ namespace TaskManagementSystem.Controllers
                 {
                     Id = savedTask.Assignee.Id,
                     Name = savedTask.Assignee.Name,
-                    Email = savedTask.Assignee.Email
+                    Email = savedTask.Assignee.Email,
+                    PhoneNo = task.Assignee.PhoneNo,
+                    Status = task.Assignee.Status
                 }
             };
 
@@ -281,7 +293,9 @@ namespace TaskManagementSystem.Controllers
                 {
                     Id = updatedTask.Assignee.Id,
                     Name = updatedTask.Assignee.Name,
-                    Email = updatedTask.Assignee.Email
+                    Email = updatedTask.Assignee.Email,
+                    PhoneNo = task.Assignee.PhoneNo,
+                    Status = task.Assignee.Status
                 }
             };
 

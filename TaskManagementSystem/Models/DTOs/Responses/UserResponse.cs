@@ -1,4 +1,5 @@
-﻿using TaskManagementSystem.Models.Entities;
+﻿using TaskManagementSystem.Enums;
+using TaskManagementSystem.Models.Entities;
 
 namespace TaskManagementSystem.Models.DTOs.Responses
 {
@@ -10,7 +11,11 @@ namespace TaskManagementSystem.Models.DTOs.Responses
 
         public required string Email { get; set; }
 
+        public required string PhoneNo { get; set; }
+
         public required string Username { get; set; }
+
+        public required UserStatus Status { get; set; }
 
         public Role? Role { get; set; }
     }
