@@ -49,7 +49,8 @@ namespace TaskManagementSystem.Controllers
                     Name = task.Assignee.Name,
                     Email = task.Assignee.Email,
                     PhoneNo = task.Assignee.PhoneNo,
-                    Status = task.Assignee.Status
+                    Status = task.Assignee.Status,
+                    JoinedDate = task.Assignee.JoinedDate
                 }
             }).ToList();
 
@@ -85,7 +86,8 @@ namespace TaskManagementSystem.Controllers
                     Name = task.Assignee.Name,
                     Email = task.Assignee.Email,
                     PhoneNo = task.Assignee.PhoneNo,
-                    Status = task.Assignee.Status
+                    Status = task.Assignee.Status,
+                    JoinedDate = task.Assignee.JoinedDate
                 }
             };
 
@@ -121,7 +123,8 @@ namespace TaskManagementSystem.Controllers
                     Name = task.Assignee.Name,
                     Email = task.Assignee.Email,
                     PhoneNo = task.Assignee.PhoneNo,
-                    Status = task.Assignee.Status
+                    Status = task.Assignee.Status,
+                    JoinedDate = task.Assignee.JoinedDate
                 }
             }).ToList();
 
@@ -157,7 +160,8 @@ namespace TaskManagementSystem.Controllers
                     Name = task.Assignee.Name,
                     Email = task.Assignee.Email,
                     PhoneNo = task.Assignee.PhoneNo,
-                    Status = task.Assignee.Status
+                    Status = task.Assignee.Status,
+                    JoinedDate = task.Assignee.JoinedDate
                 }
             }).ToList();
 
@@ -193,7 +197,8 @@ namespace TaskManagementSystem.Controllers
                     Name = task.Assignee.Name,
                     Email = task.Assignee.Email,
                     PhoneNo = task.Assignee.PhoneNo,
-                    Status = task.Assignee.Status
+                    Status = task.Assignee.Status,
+                    JoinedDate = task.Assignee.JoinedDate
                 }
             }).ToList();
 
@@ -243,7 +248,8 @@ namespace TaskManagementSystem.Controllers
                     Name = savedTask.Assignee.Name,
                     Email = savedTask.Assignee.Email,
                     PhoneNo = task.Assignee.PhoneNo,
-                    Status = task.Assignee.Status
+                    Status = task.Assignee.Status,
+                    JoinedDate = task.Assignee.JoinedDate
                 }
             };
 
@@ -295,7 +301,8 @@ namespace TaskManagementSystem.Controllers
                     Name = updatedTask.Assignee.Name,
                     Email = updatedTask.Assignee.Email,
                     PhoneNo = task.Assignee.PhoneNo,
-                    Status = task.Assignee.Status
+                    Status = task.Assignee.Status,
+                    JoinedDate = task.Assignee.JoinedDate
                 }
             };
 

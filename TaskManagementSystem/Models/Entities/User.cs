@@ -7,6 +7,8 @@ namespace TaskManagementSystem.Models.Entities
     {
         public Guid Id { get; set; }
 
+        //public string? UserImage { get; set; }
+
         public required string Name { get; set; }
 
         public required string Email { get; set; }
@@ -18,6 +20,8 @@ namespace TaskManagementSystem.Models.Entities
         public required string Password { get; set; }
 
         public required UserStatus Status { get; set; }
+
+        public DateTime JoinedDate { get; set; }
 
         public required Guid RoleId { get; set; }
 
