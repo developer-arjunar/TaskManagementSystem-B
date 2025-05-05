@@ -207,6 +207,131 @@ namespace TaskManagementSystem.Controllers
         //    return Ok(updateResponse);
         //}
 
+        [HttpPut]
+        [Route("updateProfileDetails/{id:guid}")]
+        public IActionResult UpdateUserProfileDetails(Guid id, UserProfileDetailsUpdateRequest updateRequest)
+        {
+            var user = dbContext.Users.Find(id);
+
+            if (user is null)
+            {
+                return NotFound();
+            }
+
+            user.Name = updateRequest.Name;
+            user.Email = updateRequest.Email;
+            user.PhoneNo = updateRequest.PhoneNo;
+
+            dbContext.SaveChanges();
+
+            var updatedUser = dbContext.Users.Include(u => u.Role).FirstOrDefault(u => u.Id == user.Id);
+
+            if (updatedUser is null)
+            {
+                return BadRequest();
+            }
+
+            var updateResponse = new UserResponse
+            {
+                Id = user.Id,
+                Name = user.Name,
+                Email = user.Email,
+                PhoneNo = user.PhoneNo,
+                Username = user.Username.ToUpper(),
+                Status = user.Status,
+                JoinedDate = user.JoinedDate,
+                Role = user.Role
+            };
+
+            return Ok(updateResponse);
+        }
+
+        [HttpPut]
+        [Route("updateAccountDetails/{id:guid}")]
+        public IActionResult UpdateUserAccountDetails(Guid id, UserAccountDetailsUpdateRequest updateRequest)
+        {
+            var user = dbContext.Users.Find(id);
+
+            if (user is null)
+            {
+                return NotFound();
+            }
+
+            user.Username = updateRequest.Username.ToUpper();
+
+            dbContext.SaveChanges();
+
+            var updatedUser = dbContext.Users.Include(u => u.Role).FirstOrDefault(u => u.Id == user.Id);
+
+            if (updatedUser is null)
+            {
+                return BadRequest();
+            }
+
+            var updateResponse = new UserResponse
+            {
+                Id = user.Id,
+                Name = user.Name,
+                Email = user.Email,
+                PhoneNo = user.PhoneNo,
+                Username = user.Username.ToUpper(),
+                Status = user.Status,
+                JoinedDate = user.JoinedDate,
+                Role = user.Role
+            };
+
+            return Ok(updateResponse);
+        }
+
+        [HttpPut]
+        [Route("updatePassword/{id:guid}")]
+        public IActionResult UpdateUserAccountPassword(Guid id, UserPasswordUpdateRequest updateRequest)
+        {
+            string storedHash = "";
+
+            var user = dbContext.Users.Find(id);
+
+            if (user is not null)
+            {
+                storedHash = user.Password;
+
+                if (BCrypt.Net.BCrypt.Verify(updateRequest.OldPassword, storedHash))
+                {
+                    user.Password = BCrypt.Net.BCrypt.HashPassword(updateRequest.NewPassword);
+
+                    dbContext.SaveChanges();
+
+                    var updatedUser = dbContext.Users.Include(u => u.Role).FirstOrDefault(u => u.Id == user.Id);
+
+                    if (updatedUser is null)
+                    {
+                        return BadRequest();
+                    }
+
+                    var updateResponse = new UserResponse
+                    {
+                        Id = user.Id,
+                        Name = user.Name,
+                        Email = user.Email,
+                        PhoneNo = user.PhoneNo,
+                        Username = user.Username.ToUpper(),
+                        Status = user.Status,
+                        JoinedDate = user.JoinedDate,
+                        Role = user.Role
+                    };
+
+                    return Ok(updateResponse);
+
+                } else
+                {
+                    return BadRequest();
+                }
+            } else
+            {
+                return NotFound();
+            }
+        }
+
         [HttpDelete]
         [Route("{id:guid}")]
         public IActionResult DeleteUser(Guid id)
