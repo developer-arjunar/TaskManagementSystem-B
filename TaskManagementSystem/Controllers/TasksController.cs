@@ -205,6 +205,46 @@ namespace TaskManagementSystem.Controllers
             return Ok(getAllByStatusResponse);
         }
 
+        [HttpGet]
+        [Route("tasksSummary")]
+        public IActionResult GetTasksSummary()
+        {
+            int openedTasks = dbContext.Tasks.Where(t => t.Status == "OPENED").Count();
+            int inProgressTasks = dbContext.Tasks.Where(t => t.Status == "IN PROGRESS").Count();
+            int completedTasks = dbContext.Tasks.Where(t => t.Status == "COMPLETED").Count();
+            int overdueTasks = dbContext.Tasks.Where(t => t.Status == "OVERDUE").Count();
+
+            var taskSummary = new TasksCountResponse()
+            {
+                OpenedTasks = openedTasks,
+                InProgressTasks = inProgressTasks,
+                CompletedTasks = completedTasks,
+                OverdueTasks = overdueTasks
+            };
+
+            return Ok(taskSummary);
+        }
+
+        [HttpGet]
+        [Route("tasksSummaryByAssigneeId/{assigneeId:guid}")]
+        public IActionResult GetTasksSummaryByAssigneeId(Guid assigneeId)
+        {
+            int openedTasks = dbContext.Tasks.Where(t => t.AssigneeId == assigneeId && t.Status == "OPENED").Count();
+            int inProgressTasks = dbContext.Tasks.Where(t => t.AssigneeId == assigneeId && t.Status == "IN PROGRESS").Count();
+            int completedTasks = dbContext.Tasks.Where(t => t.AssigneeId == assigneeId && t.Status == "COMPLETED").Count();
+            int overdueTasks = dbContext.Tasks.Where(t => t.AssigneeId == assigneeId && t.Status == "OVERDUE").Count();
+
+            var taskSummary = new TasksCountResponse()
+            {
+                OpenedTasks = openedTasks,
+                InProgressTasks = inProgressTasks,
+                CompletedTasks = completedTasks,
+                OverdueTasks = overdueTasks
+            };
+
+            return Ok(taskSummary);
+        }
+
         [HttpPost]
         public IActionResult AddTask(AddTaskRequest saveRequest)
         {
