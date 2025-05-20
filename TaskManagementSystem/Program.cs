@@ -9,7 +9,7 @@ builder.Services.AddCors(options =>
         builder =>
         {
             builder
-                .WithOrigins("http://localhost:4200", "http://192.168.1.5:4200")
+                .WithOrigins("http://localhost:4200", "http://192.168.1.5:4200", "https://task-management-system-f.vercel.app")
                 .AllowAnyHeader()
                 .AllowAnyMethod();
         });
