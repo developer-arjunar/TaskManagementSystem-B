@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Tutorials\\Udemy\\YT Sameer Saini\\TaskManagementSystem\\TaskManagementSystem\\TaskManagementSystem.csproj": {}
+    "F:\\Personal\\Projects\\.NET\\TaskManagementSystem-B\\TaskManagementSystem\\TaskManagementSystem.csproj": {}
   },
   "projects": {
-    "E:\\Tutorials\\Udemy\\YT Sameer Saini\\TaskManagementSystem\\TaskManagementSystem\\TaskManagementSystem.csproj": {
+    "F:\\Personal\\Projects\\.NET\\TaskManagementSystem-B\\TaskManagementSystem\\TaskManagementSystem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Tutorials\\Udemy\\YT Sameer Saini\\TaskManagementSystem\\TaskManagementSystem\\TaskManagementSystem.csproj",
+        "projectUniqueName": "F:\\Personal\\Projects\\.NET\\TaskManagementSystem-B\\TaskManagementSystem\\TaskManagementSystem.csproj",
         "projectName": "TaskManagementSystem",
-        "projectPath": "E:\\Tutorials\\Udemy\\YT Sameer Saini\\TaskManagementSystem\\TaskManagementSystem\\TaskManagementSystem.csproj",
-        "packagesPath": "C:\\Users\\Arjuna Randeniya\\.nuget\\packages\\",
-        "outputPath": "E:\\Tutorials\\Udemy\\YT Sameer Saini\\TaskManagementSystem\\TaskManagementSystem\\obj\\",
+        "projectPath": "F:\\Personal\\Projects\\.NET\\TaskManagementSystem-B\\TaskManagementSystem\\TaskManagementSystem.csproj",
+        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
+        "outputPath": "F:\\Personal\\Projects\\.NET\\TaskManagementSystem-B\\TaskManagementSystem\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Arjuna Randeniya\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -54,19 +54,33 @@
               "target": "Package",
               "version": "[4.0.3, )"
             },
-            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+            "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[8.0.14, )"
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
+              "version": "[8.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[9.0.3, )"
+              "version": "[8.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[9.0.3, )"
+              "version": "[8.0.0, )"
+            },
+            "Pomelo.EntityFrameworkCore.MySql": {
+              "target": "Package",
+              "version": "[8.0.0, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

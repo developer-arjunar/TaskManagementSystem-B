@@ -47,7 +47,10 @@ namespace TaskManagementSystem.Controllers
                 {
                     Id = task.Assignee.Id,
                     Name = task.Assignee.Name,
-                    Email = task.Assignee.Email
+                    Email = task.Assignee.Email,
+                    PhoneNo = task.Assignee.PhoneNo,
+                    Status = task.Assignee.Status,
+                    JoinedDate = task.Assignee.JoinedDate
                 }
             }).ToList();
 
@@ -81,7 +84,10 @@ namespace TaskManagementSystem.Controllers
                 {
                     Id = task.Assignee.Id,
                     Name = task.Assignee.Name,
-                    Email = task.Assignee.Email
+                    Email = task.Assignee.Email,
+                    PhoneNo = task.Assignee.PhoneNo,
+                    Status = task.Assignee.Status,
+                    JoinedDate = task.Assignee.JoinedDate
                 }
             };
 
@@ -115,11 +121,128 @@ namespace TaskManagementSystem.Controllers
                 {
                     Id = task.Assignee.Id,
                     Name = task.Assignee.Name,
-                    Email = task.Assignee.Email
+                    Email = task.Assignee.Email,
+                    PhoneNo = task.Assignee.PhoneNo,
+                    Status = task.Assignee.Status,
+                    JoinedDate = task.Assignee.JoinedDate
                 }
             }).ToList();
 
             return Ok(getAllByAssigneeIdResponse);
+        }
+
+        [HttpGet]
+        [Route("byAssigneeIdAndStatus/{assigneeId:guid}/{status}")]
+        public IActionResult GetTasksByStatus(Guid assigneeId, String status)
+        {
+            var allTasksByAssigneeIdAndStatus = dbContext.Tasks.Include(t => t.Comments).Include(t => t.Assignee).Where(t => t.AssigneeId == assigneeId && t.Status == status).ToList();
+
+            if (allTasksByAssigneeIdAndStatus is null)
+            {
+                return NotFound();
+            }
+
+            var getAllByAssigneeIdAndStatusResponse = allTasksByAssigneeIdAndStatus.Select(task => new GetTaskResponse()
+            {
+                Id = task.Id,
+                Name = task.Name,
+                Description = task.Description,
+                CreatedBy = task.CreatedBy,
+                CreatedDate = task.CreatedDate,
+                DueDate = task.DueDate,
+                UpdatedBy = task.UpdatedBy,
+                UpdatedDate = task.UpdatedDate,
+                Status = task.Status,
+                Comments = task.Comments,
+                Assignee = new UserSimpleResponse()
+                {
+                    Id = task.Assignee.Id,
+                    Name = task.Assignee.Name,
+                    Email = task.Assignee.Email,
+                    PhoneNo = task.Assignee.PhoneNo,
+                    Status = task.Assignee.Status,
+                    JoinedDate = task.Assignee.JoinedDate
+                }
+            }).ToList();
+
+            return Ok(getAllByAssigneeIdAndStatusResponse);
+        }
+
+        [HttpGet]
+        [Route("byStatus/{status}")]
+        public IActionResult GetTasksByStatus(String status)
+        {
+            var allTasksByStatus = dbContext.Tasks.Include(t => t.Comments).Include(t => t.Assignee).Where(t => t.Status == status).ToList();
+
+            if (allTasksByStatus is null)
+            {
+                return NotFound();
+            }
+
+            var getAllByStatusResponse = allTasksByStatus.Select(task => new GetTaskResponse()
+            {
+                Id = task.Id,
+                Name = task.Name,
+                Description = task.Description,
+                CreatedBy = task.CreatedBy,
+                CreatedDate = task.CreatedDate,
+                DueDate = task.DueDate,
+                UpdatedBy = task.UpdatedBy,
+                UpdatedDate = task.UpdatedDate,
+                Status = task.Status,
+                Comments = task.Comments,
+                Assignee = new UserSimpleResponse()
+                {
+                    Id = task.Assignee.Id,
+                    Name = task.Assignee.Name,
+                    Email = task.Assignee.Email,
+                    PhoneNo = task.Assignee.PhoneNo,
+                    Status = task.Assignee.Status,
+                    JoinedDate = task.Assignee.JoinedDate
+                }
+            }).ToList();
+
+            return Ok(getAllByStatusResponse);
+        }
+
+        [HttpGet]
+        [Route("tasksSummary")]
+        public IActionResult GetTasksSummary()
+        {
+            int openedTasks = dbContext.Tasks.Where(t => t.Status == "OPENED").Count();
+            int inProgressTasks = dbContext.Tasks.Where(t => t.Status == "IN PROGRESS").Count();
+            int completedTasks = dbContext.Tasks.Where(t => t.Status == "COMPLETED").Count();
+            int overdueTasks = dbContext.Tasks.Where(t => t.Status == "OVERDUE").Count();
+
+            var taskSummary = new TasksCountResponse()
+            {
+                OpenedTasks = openedTasks,
+                InProgressTasks = inProgressTasks,
+                CompletedTasks = completedTasks,
+                OverdueTasks = overdueTasks
+            };
+
+            return Ok(taskSummary);
+        }
+
+        [HttpGet]
+        [Route("tasksSummaryByAssigneeId/{assigneeId:guid}")]
+        public IActionResult GetTasksSummaryByAssigneeId(Guid assigneeId)
+        {
+            int openedTasks = dbContext.Tasks.Where(t => t.AssigneeId == assigneeId && t.Status == "OPENED").Count();
+            int inProgressTasks = dbContext.Tasks.Where(t => t.AssigneeId == assigneeId && t.Status == "IN PROGRESS").Count();
+            int completedTasks = dbContext.Tasks.Where(t => t.AssigneeId == assigneeId && t.Status == "COMPLETED").Count();
+            int overdueTasks = dbContext.Tasks.Where(t => t.AssigneeId == assigneeId && t.Status == "OVERDUE").Count();
+
+            var taskSummary = new TasksCountResponse()
+            {
+                OpenedTasks = openedTasks,
+                InProgressTasks = inProgressTasks,
+                CompletedTasks = completedTasks,
+                OverdueTasks = overdueTasks
+            };
+
+            return Ok(taskSummary);
         }
 
         [HttpPost]
@@ -130,12 +253,12 @@ namespace TaskManagementSystem.Controllers
                 Name = saveRequest.Name,
                 Description = saveRequest.Description,
                 AssigneeId = saveRequest.AssigneeId,
-                CreatedBy = "ADMIN",
+                CreatedBy = saveRequest.CreatedBy,
                 CreatedDate = DateTime.Now,
                 DueDate = saveRequest.DueDate,
-                UpdatedBy = "ADMIN",
+                UpdatedBy = saveRequest.UpdatedBy,
                 UpdatedDate = DateTime.Now,
-                Status = "OPENED"
+                Status = saveRequest.Status
             };
 
             dbContext.Tasks.Add(task);
@@ -163,7 +286,10 @@ namespace TaskManagementSystem.Controllers
                 {
                     Id = savedTask.Assignee.Id,
                     Name = savedTask.Assignee.Name,
-                    Email = savedTask.Assignee.Email
+                    Email = savedTask.Assignee.Email,
+                    PhoneNo = task.Assignee.PhoneNo,
+                    Status = task.Assignee.Status,
+                    JoinedDate = task.Assignee.JoinedDate
                 }
             };
 
@@ -184,6 +310,7 @@ namespace TaskManagementSystem.Controllers
             task.Name = updateRequest.Name;
             task.Description = updateRequest.Description;
             task.DueDate = updateRequest.DueDate;
+            task.UpdatedBy = updateRequest.UpdatedBy;
             task.UpdatedDate = DateTime.Now;
             task.Status = updateRequest.Status;
             task.AssigneeId = updateRequest.AssigneeId;
@@ -212,7 +339,10 @@ namespace TaskManagementSystem.Controllers
                 {
                     Id = updatedTask.Assignee.Id,
                     Name = updatedTask.Assignee.Name,
-                    Email = updatedTask.Assignee.Email
+                    Email = updatedTask.Assignee.Email,
+                    PhoneNo = task.Assignee.PhoneNo,
+                    Status = task.Assignee.Status,
+                    JoinedDate = task.Assignee.JoinedDate
                 }
             };
 
